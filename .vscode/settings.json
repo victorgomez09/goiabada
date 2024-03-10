@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sso-server",
+            "database": "\\\\wsl.localhost\\Debian\\home\\viti\\projects\\sso-server\\authserver\\src\\auth.db"
+        }
+    ]
+}

@@ -208,8 +208,11 @@ func (s *Server) jsonError(w http.ResponseWriter, r *http.Request, err error) {
 func (s *Server) getAuthContext(r *http.Request) (*dtos.AuthContext, error) {
 	sess, err := s.sessionStore.Get(r, common.SessionName)
 	if err != nil {
+		fmt.Println("error", err)
 		return nil, err
 	}
+	fmt.Println("sess.values", sess.Values)
+	fmt.Println("sess.values[common.SessionKeyAuthContext]", sess.Values[common.SessionKeyAuthContext])
 	jsonData, ok := sess.Values[common.SessionKeyAuthContext].(string)
 	if !ok {
 		return nil, customerrors.ErrNoAuthContext

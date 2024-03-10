@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -179,12 +180,21 @@ func (s *Server) handleAuthorizeGet(authorizeValidator authorizeValidator,
 
 		} else {
 			// no valid session
+			fmt.Println("request", r.URL)
 			err = s.saveAuthContext(w, r, &authContext)
 			if err != nil {
 				s.internalServerError(w, r, err)
 				return
 			}
-			http.Redirect(w, r, lib.GetBaseUrl()+"/auth/pwd", http.StatusFound)
+
+			authContext, err := s.getAuthContext(r)
+			if err != nil {
+				s.internalServerError(w, r, err)
+				return
+			}
+			fmt.Println("authContext", authContext)
+			// http.Redirect(w, r, lib.GetBaseUrl()+"/auth/pwd", http.StatusFound)
+			http.Redirect(w, r, "http://localhost:5173/login", http.StatusFound)
 			return
 		}
 

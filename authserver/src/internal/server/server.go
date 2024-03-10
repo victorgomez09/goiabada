@@ -148,8 +148,8 @@ func (s *Server) initMiddleware(settings *entities.Settings) {
 	s.router.Use(middleware.StripSlashes)
 
 	// CSRF
-	s.router.Use(MiddlewareSkipCsrf())
-	s.router.Use(MiddlewareCsrf(settings))
+	// s.router.Use(MiddlewareSkipCsrf())
+	// s.router.Use(MiddlewareCsrf(settings))
 
 	// Adds settings to the request context
 	s.router.Use(MiddlewareSettings(s.database))

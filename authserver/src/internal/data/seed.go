@@ -253,5 +253,20 @@ func seed(database Database) error {
 		return err
 	}
 
+	originUrl := viper.GetString("WebOrigin")
+	if len(originUrl) == 0 {
+		originUrl = "http://localhost:5173"
+		slog.Warn(fmt.Sprintf("Environment variable GOIABADA_ISSUER is not set. Will default issuer to '%v'", issuer))
+	}
+
+	webOrigin := &entities.WebOrigin{
+		Origin:   originUrl,
+		ClientId: client1.Id,
+	}
+	err = database.CreateWebOrigin(nil, webOrigin)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

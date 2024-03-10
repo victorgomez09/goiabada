@@ -12,6 +12,10 @@ import (
 func MiddlewareCors(database data.Database) func(next http.Handler) http.Handler {
 	return cors.Handler(cors.Options{
 		AllowOriginFunc: func(r *http.Request, origin string) bool {
+			// allow all origins
+			if origin == "http://localhost:5173" {
+				return true
+			}
 			if r.URL.Path == "/.well-known/openid-configuration" || r.URL.Path == "/certs" {
 				// always allow the discovery URL
 				return true

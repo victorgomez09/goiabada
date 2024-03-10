@@ -29,6 +29,7 @@ func NewSQLiteDatabase() (*SQLiteDatabase, error) {
 	dsn := viper.GetString("DB.DSN")
 	if dsn == "" {
 		dsn = "file::memory:?cache=shared" // Default to in-memory database
+		// dsn = "file:./auth.db?cache=shared"
 	}
 
 	slog.Info(fmt.Sprintf("using sqlite database: %v", dsn))

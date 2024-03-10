@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"log/slog"
 	"net/http"
 	"strings"
@@ -81,6 +82,7 @@ func (s *Server) handleAuthPwdPost(authorizeValidator authorizeValidator, loginM
 
 		email := r.FormValue("email")
 		password := r.FormValue("password")
+		fmt.Println(email, password)
 
 		settings := r.Context().Value(common.ContextKeySettings).(*entities.Settings)
 

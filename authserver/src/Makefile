@@ -12,6 +12,8 @@ test-sqlite: export GOIABADA_LOGGER_ROUTER_HTTPREQUESTS_ENABLED=false
 test-sqlite: export GOIABADA_AUDITING_CONSOLELOG_ENABLED=false
 test-sqlite: export GOIABADA_LOGGER_GORM_TRACEALL=false
 test-sqlite: export GOIABADA_RATELIMITER_ENABLED=false
+test-sqlite: export GOIABADA_HOST=localhost
+test-sqlite: export GOIABADA_PORT=5713
 test-sqlite: build
 	./run-tests.sh
 	rm -f /tmp/goiabada.db
